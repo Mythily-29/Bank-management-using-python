@@ -126,6 +126,7 @@ class Accounts(): #Doing accounts related operations
     def Transfer_money(uid,tid,amount):
         get_one=default_id_checking(uid,acc=True)
         get_two=default_id_checking(tid,acc=True)
+        if uid==tid:print('Same id cannot transfer money')
         if get_two:
             if amount > 0 and amount < get_one['balance']:
                 balance=get_two['balance']
