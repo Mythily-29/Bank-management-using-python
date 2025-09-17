@@ -115,18 +115,20 @@ class Accounts(): #Doing accounts related operations
 
     def Withdraw(id,amount):
         get=default_id_checking(id,acc=True)
-        if amount < get['balance']:
+        if amount > 0 and amount < get['balance']:
             get['balance'] -= amount
             get['withdraw'].append(f'Withdrawed Rs.{amount}')
             get['transaction_history'].append(f'Withdrawed Rs.{amount}')
             print(f'Withdrawed Rs.{amount}')
         else:
-            print('Enter sufficient amount')
+            print('Enter sufficient amount or dont enter negative balance')
 
     def Transfer_money(uid,tid,amount):
         get_one=default_id_checking(uid,acc=True)
         get_two=default_id_checking(tid,acc=True)
-        if uid==tid:print('Same id cannot transfer money')
+        if uid==tid:
+            print('Same id cannot transfer money')
+            return
         if get_two:
             if amount > 0 and amount < get_one['balance']:
                 balance=get_two['balance']
